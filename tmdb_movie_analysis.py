@@ -35,6 +35,7 @@ ax.set_xticklabels([int(year) for year in df_decade_rating.index], rotation=0)
 ax.set_title('Average TMDB Movie Rating by Decade of Movie Release')
 ax.set_xlabel('Decade')
 ax.set_ylabel('Average Rating (Out of 10)')
+plt.savefig('figures/rating_by_decade.png')
 
 # Genres by year of movie release
 df_genre = df.explode('genres')
@@ -51,6 +52,7 @@ ax.set_xlabel('Year', labelpad=labelpad)
 ax.set_ylabel('Number of Movies', labelpad=labelpad)
 ax.set_title('Movie Genre By Year of Release')
 plt.tight_layout()
+plt.savefig('figures/genres_released_by_year.png')
 
 # Compare relationships between budget, revenue, and average rating
 corr_mask = ~df[['budget', 'revenue', 'vote_average']].isna()
@@ -94,4 +96,5 @@ revenue_v_rating_regression = revenue_v_rating_slope * revenue + revenue_v_ratin
 ax[2].plot(revenue, revenue_v_rating_regression, color='yellowgreen', label='Revenue to Average Rating Trend')
 ax[2].set_title('Average User Rating by Total Movie Revenue')
 ax[2].legend()
+plt.savefig('figures/budget_revenue_rating_trends')
 plt.show()
